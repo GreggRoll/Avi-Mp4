@@ -21,19 +21,15 @@ This Python script provides functionality to convert .avi video files stored as 
 ```python
 import arcpy
 import subprocess
-import os
-```
+import os```
 
 2. **Define the conversion function:**
-```
-def convert_avi_to_mp4(vlc_path, input_file, output_file):
+```def convert_avi_to_mp4(vlc_path, input_file, output_file):
     command = [vlc_path, input_file, '--sout', f'#transcode{{vcodec=h264,vb=800,acodec=mp4a,ab=128,channels=2,samplerate=44100}}:std{{access=file,mux=mp4,dst={output_file}}}']
-    subprocess.run(command)
-```
+    subprocess.run(command)```
 3. **Define the function to convert blobs in a table:**
 
-```
-def convert_blobs_in_table(gdb_path, table_name, blob_field, att_field, vlc_path):
+```def convert_blobs_in_table(gdb_path, table_name, blob_field, att_field, vlc_path):
     # Set workspace
     arcpy.env.workspace = gdb_path
 
@@ -59,8 +55,7 @@ def convert_blobs_in_table(gdb_path, table_name, blob_field, att_field, vlc_path
                 cursor.updateRow(row)
 
                 # Delete the temporary .avi file
-                os.remove(input_file)
-```
+                os.remove(input_file)```
 
 4. **Execute the `convert_blobs_in_table` function:**
 
@@ -79,8 +74,7 @@ def convert_blobs_in_table(gdb_path, table_name, blob_field, att_field, vlc_path
     att_field = 'your_attachment_field'
     vlc_path = 'C:/Program Files/VideoLAN/VLC/vlc.exe'
 
-    convert_blobs_in_table(gdb_path, table_name, blob_field, att_field, vlc_path)
-    ```
+    convert_blobs_in_table(gdb_path, table_name, blob_field, att_field, vlc_path)```
 
 ## 📜 License
 
